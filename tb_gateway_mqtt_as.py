@@ -208,7 +208,7 @@ class TBDeviceMqttClient(MQTTClient):
     async def send_attributes(self, attributes, qos=1):
         return await self.publish_data(attributes, ATTRIBUTES_TOPIC, qos)
 
-    def unsubscribe_from_attribute(self, subscription_id):
+    async def unsubscribe_from_attribute(self, subscription_id):
         async with self.lock:
             for x in self.__device_sub_dict:
                 if self.__device_sub_dict[x].get(subscription_id):
